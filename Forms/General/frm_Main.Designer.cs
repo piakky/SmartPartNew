@@ -186,7 +186,7 @@
             // 
             // barListItem2
             // 
-            this.barListItem2.Caption = "Smart Parts V.3.0.37";
+            this.barListItem2.Caption = "Smart Parts V.3.0.38";
             this.barListItem2.Id = 129;
             this.barListItem2.Name = "barListItem2";
             toolTipItem1.Text = "20230606";
