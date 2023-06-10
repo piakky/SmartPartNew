@@ -3672,7 +3672,9 @@ namespace SmartPart.Forms.General
                 //{
                 //    row["Marktrans"] = cls_Data.GetMarkTransData(cls_Library.DBInt(row["ITEM_ID"]));
                 //}
-                row["Marktrans"] = cls_Library.DBDecimal(row["QTY_MARK"]) - cls_Library.DBDecimal(row["QTY_RETURN"]);
+
+                //row["Marktrans"] = cls_Library.DBDecimal(row["QTY_MARK"]) - cls_Library.DBDecimal(row["QTY_RETURN"]);
+                row["Marktrans"] = cls_Library.DBDecimal(row["RCQTY"]) - cls_Library.DBDecimal(row["QTY_RETURN"]);
                 row["Quotrans"] = cls_Data.GetLastSQData(cls_Library.DBInt(row["ITEM_ID"]));
                 row["POtrans"] = cls_Data.GetLastPOData(cls_Library.DBInt(row["ITEM_ID"]));
                 dtVG = dtShow.Clone();
@@ -3895,7 +3897,8 @@ namespace SmartPart.Forms.General
                 //{
                 //    row["Marktrans"] = cls_Data.GetMarkTransData(cls_Library.DBInt(row["ITEM_ID"]));
                 //} 
-                row["Marktrans"] = cls_Library.DBDecimal(row["QTY_MARK"]) - cls_Library.DBDecimal(row["QTY_RETURN"]);
+                //row["Marktrans"] = cls_Library.DBDecimal(row["QTY_MARK"]) - cls_Library.DBDecimal(row["QTY_RETURN"]);
+                row["Marktrans"] = cls_Library.DBDecimal(row["RCQTY"]) - cls_Library.DBDecimal(row["QTY_RETURN"]);
                 row["Quotrans"] = cls_Data.GetLastSQData(cls_Library.DBInt(row["ITEM_ID"]));
                 row["POtrans"] = cls_Data.GetLastPOData(cls_Library.DBInt(row["ITEM_ID"]));
                 dtVG = dtShow.Clone();

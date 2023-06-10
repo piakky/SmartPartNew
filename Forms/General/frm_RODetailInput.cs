@@ -343,10 +343,12 @@ namespace SmartPart.Forms.General
                         {
                             spinMarkNo.Properties.MinValue = cls_Library.CDecimal(1 / Zconv); //1;
                             //spinMarkNo.Properties.MaxValue = cls_Library.CDecimal(Zquan / Zconv); //cls_Library.DBInt(_list[0]["QTY_MARK"]);
-                            spinMarkNo.Properties.MaxValue = cls_Library.DBInt(_list[0]["QTY_MARK"]) - cls_Library.DBInt(_list[0]["QTY_RETURN"]);
+                            //spinMarkNo.Properties.MaxValue = cls_Library.DBInt(_list[0]["QTY_MARK"]) - cls_Library.DBInt(_list[0]["QTY_RETURN"]);
+                            spinMarkNo.Properties.MaxValue = cls_Library.DBInt(_list[0]["QTY"]) - cls_Library.DBInt(_list[0]["QTY_RETURN"]);
                         }
                         //spinMarkNo.EditValue = cls_Library.CDecimal(Zquan / Zconv);
-                        spinMarkNo.EditValue = cls_Library.DBInt(_list[0]["QTY_MARK"]) - cls_Library.DBInt(_list[0]["QTY_RETURN"]);
+                        //spinMarkNo.EditValue = cls_Library.DBInt(_list[0]["QTY_MARK"]) - cls_Library.DBInt(_list[0]["QTY_RETURN"]);
+                        spinMarkNo.EditValue = cls_Library.DBInt(_list[0]["QTY"]) - cls_Library.DBInt(_list[0]["QTY_RETURN"]);
 
                         //spinQtyRe.EditValue = cls_Library.DBDecimal(_list[0]["RETURN_QTY"]);
                         //spinPriceD.EditValue = cls_Library.DBDecimal(_list[0]["PRICE_DOC"]);
