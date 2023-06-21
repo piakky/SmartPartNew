@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ROList));
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -152,14 +153,14 @@
             this.btShowItem.Appearance.Options.UseFont = true;
             this.btShowItem.Appearance.Options.UseTextOptions = true;
             this.btShowItem.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.btShowItem.ImageOptions.Image = global::SmartPart.Properties.Resources.Preview_16x16;
+            this.btShowItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btShowItem.ImageOptions.Image")));
             this.btShowItem.Location = new System.Drawing.Point(8, 348);
             this.btShowItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btShowItem.Name = "btShowItem";
             this.btShowItem.Size = new System.Drawing.Size(140, 28);
             this.btShowItem.TabIndex = 13;
-            this.btShowItem.Text = "Show item (F11)";
-            this.btShowItem.Click += new System.EventHandler(this.btShowItem_Click);
+            this.btShowItem.Text = "พิมพ์ (F9)";
+            this.btShowItem.Click += new System.EventHandler(this.btPrintItem_Click);
             // 
             // btView
             // 
@@ -184,14 +185,14 @@
             this.btActive.Appearance.Options.UseFont = true;
             this.btActive.Appearance.Options.UseTextOptions = true;
             this.btActive.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.btActive.ImageOptions.Image = global::SmartPart.Properties.Resources.Settings_16x16;
+            this.btActive.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btActive.ImageOptions.Image")));
             this.btActive.Location = new System.Drawing.Point(8, 384);
             this.btActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btActive.Name = "btActive";
             this.btActive.Size = new System.Drawing.Size(140, 28);
             this.btActive.TabIndex = 12;
-            this.btActive.Text = "Set Active (F9)";
-            this.btActive.Click += new System.EventHandler(this.btActive_Click);
+            this.btActive.Text = "ปิด (F11)";
+            this.btActive.Click += new System.EventHandler(this.btClose_Click);
             // 
             // btSerch
             // 
@@ -220,7 +221,7 @@
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(140, 28);
             this.btDelete.TabIndex = 11;
-            this.btDelete.Text = "ลบ (F7)";
+            this.btDelete.Text = "ยกเลิก (F7)";
             this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
             // 
             // btEdit

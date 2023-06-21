@@ -10217,6 +10217,67 @@ namespace SmartPart.Class
             return ret;
         }
 
+        public static bool UpdatePrintVoucher(cls_Struct.VoucherType type, int IdData)
+        {
+            SqlConnection conn = new SqlConnection();
+            SqlCommand cmd = conn.CreateCommand();
+            SqlTransaction tran = null;
+            SqlDataAdapter _dataAdapter = new SqlDataAdapter();
+            StringBuilder sb = new StringBuilder();
+            bool ret = false;
+            try
+            {
+                if (cls_Global_DB.ConnectDatabase(ref conn))
+                {
+                    tran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+
+                    sb.Clear();
+                    switch (type)
+                    {
+                        case cls_Struct.VoucherType.PO:
+                            sb.AppendLine("UPDATE POHEADER WITH (UPDLOCK) SET RC_STATUS = 2 WHERE POH_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.RC:
+                            sb.AppendLine("UPDATE RCHEADER WITH (UPDLOCK) SET RC_STATUS = 2 WHERE RCH_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.JOB:
+                            sb.AppendLine("UPDATE JOBHEAD WITH (UPDLOCK) SET RC_STATUS = 2 WHERE JOB_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.RO:
+                            sb.AppendLine("UPDATE ROHEADER WITH (UPDLOCK) SET RC_STATUS = 2 WHERE ROH_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.SQ:
+                            sb.AppendLine("UPDATE SQHEADER WITH (UPDLOCK) SET RC_STATUS = 2 WHERE SQH_ID = @IdData");
+                            break;
+                    }
+
+                    cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = sb.ToString();
+                    cmd.CommandTimeout = 30;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.Clear();
+                    cmd.Transaction = tran;
+
+                    cmd.Parameters.Add("@IdData", SqlDbType.Int).Value = IdData;
+                    cmd.ExecuteNonQuery();
+                    tran.Commit();
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ret = false;
+                tran.Rollback();
+                XtraMessageBox.Show("UpdateActiveVoucher :" + ex.Message);
+            }
+            finally
+            {
+                cls_Global_DB.CloseDB(ref conn); conn.Dispose();
+            }
+            return ret;
+        }
+
         public static void UpdateUnActiveVoucher()
         {
             SqlConnection conn = new SqlConnection();

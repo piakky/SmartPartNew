@@ -165,6 +165,116 @@ namespace SmartPart.Forms.General
             }
         }
 
+        private void SetClose()
+        {
+            try
+            {
+                DataRow row = gvRO.GetFocusedDataRow();
+                int pid = 0;
+                if (row == null) return;
+                pid = cls_Library.DBInt(row["ROH_ID"]);
+                if (cls_Library.DBInt(row["RC_STATUS"]) != 2)
+                {
+                    XtraMessageBox.Show("ใบส่งคืนสินค้าเลขที่ : " + row["RO_NO"].ToString() + "ยังไม่ได้พิมพ์", "พิมพ์", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    return;
+                }
+                //if (cls_Data.CheckActiveVoucher(cls_Struct.VoucherType.RO) <= 0)
+                //{
+                //  if (cls_Data.UpdateActiveVoucher(cls_Struct.VoucherType.RO, pid))
+                //  {
+                //    XtraMessageBox.Show(string.Format("ใบส่งคืนสินค้าเลขที่ {0}  Active แล้ว", row["RO_NO"].ToString()));
+                //    if (!bwList.IsBusy)
+                //    {
+                //        this.UseWaitCursor = true;
+                //        bwList.RunWorkerAsync();
+                //    }
+                //    this.UseWaitCursor = false;
+                //    this.Cursor = Cursors.Default;
+                //  }                        
+                //}
+                //else
+                //{
+                //  XtraMessageBox.Show("มีใบส่งคืนสินค้าวันนี้ Active แล้ว");
+                //}
+
+                DialogResult Result = XtraMessageBox.Show("ต้องการปิดใบส่งคืนสินค้าเลขที่ : " + row["RO_NO"].ToString() + " ใช่หรือไม่?", "ปิด", System.Windows.Forms.MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.Yes)
+                {
+                    //cls_Data.UpdateUnActiveVoucherByType(4);
+                    if (cls_Data.UpdatePrintVoucher(cls_Struct.VoucherType.RO, pid))
+                    {
+                        XtraMessageBox.Show(string.Format("ปิดใบส่งคืนสินค้าเลขที่ {0}  เรียบร้อยแล้ว", row["RO_NO"].ToString()));
+                        if (!bwList.IsBusy)
+                        {
+                            this.UseWaitCursor = true;
+                            bwList.RunWorkerAsync();
+                        }
+                        this.UseWaitCursor = false;
+                        this.Cursor = Cursors.Default;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("SetPrint :" + ex.Message);
+            }
+        }
+
+        private void SetPrint()
+        {
+            try
+            {
+                DataRow row = gvRO.GetFocusedDataRow();
+                int pid = 0;
+                if (row == null) return;
+                pid = cls_Library.DBInt(row["ROH_ID"]);
+                //if (DateTime.Today != cls_Library.DBDateTime(row["RO_DATE"])) 
+                //{
+                //    XtraMessageBox.Show("วันที่ใบส่งคืนสินค้าต้องเป็นวันที่ปัจจุบัน");
+                //    return;
+                //}
+                //if (cls_Data.CheckActiveVoucher(cls_Struct.VoucherType.RO) <= 0)
+                //{
+                //  if (cls_Data.UpdateActiveVoucher(cls_Struct.VoucherType.RO, pid))
+                //  {
+                //    XtraMessageBox.Show(string.Format("ใบส่งคืนสินค้าเลขที่ {0}  Active แล้ว", row["RO_NO"].ToString()));
+                //    if (!bwList.IsBusy)
+                //    {
+                //        this.UseWaitCursor = true;
+                //        bwList.RunWorkerAsync();
+                //    }
+                //    this.UseWaitCursor = false;
+                //    this.Cursor = Cursors.Default;
+                //  }                        
+                //}
+                //else
+                //{
+                //  XtraMessageBox.Show("มีใบส่งคืนสินค้าวันนี้ Active แล้ว");
+                //}
+
+                DialogResult Result = XtraMessageBox.Show("ต้องการพิมพ์ใบส่งคืนสินค้าเลขที่ : " + row["RO_NO"].ToString() + " ใช่หรือไม่?", "พิมพ์", System.Windows.Forms.MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.Yes)
+                {
+                    //cls_Data.UpdateUnActiveVoucherByType(4);
+                    if (cls_Data.UpdatePrintVoucher(cls_Struct.VoucherType.RO, pid))
+                    {
+                        XtraMessageBox.Show(string.Format("พิมพ์ใบส่งคืนสินค้าเลขที่ {0}  เรียบร้อยแล้ว", row["RO_NO"].ToString()));
+                        if (!bwList.IsBusy)
+                        {
+                            this.UseWaitCursor = true;
+                            bwList.RunWorkerAsync();
+                        }
+                        this.UseWaitCursor = false;
+                        this.Cursor = Cursors.Default;
+                    }
+                }          
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("SetPrint :" + ex.Message);
+            }
+        }
+
         private void SetActive()
         {
             try
@@ -314,9 +424,9 @@ namespace SmartPart.Forms.General
             SetActive();
         }
 
-        private void btShowItem_Click(object sender, EventArgs e)
+        private void btPrintItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            SetPrint();
         }
 
         private void gvRO_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -388,6 +498,11 @@ namespace SmartPart.Forms.General
                 dateTo.Enabled = true;
                 break;
             }
+        }
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

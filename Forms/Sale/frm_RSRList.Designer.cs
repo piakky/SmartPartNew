@@ -78,6 +78,7 @@
             this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.bwList = new System.ComponentModel.BackgroundWorker();
+            this.btActive = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -155,6 +156,7 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.btActive);
             this.panelControl3.Controls.Add(this.btSearch);
             this.panelControl3.Controls.Add(this.btView);
             this.panelControl3.Controls.Add(this.btDelete);
@@ -688,6 +690,22 @@
             this.bwList.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwList_DoWork);
             this.bwList.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwList_RunWorkerCompleted);
             // 
+            // btActive
+            // 
+            this.btActive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btActive.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btActive.Appearance.Options.UseFont = true;
+            this.btActive.Appearance.Options.UseTextOptions = true;
+            this.btActive.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.btActive.ImageOptions.Image = global::SmartPart.Properties.Resources.Settings_16x16;
+            this.btActive.Location = new System.Drawing.Point(5, 409);
+            this.btActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btActive.Name = "btActive";
+            this.btActive.Size = new System.Drawing.Size(179, 28);
+            this.btActive.TabIndex = 20;
+            this.btActive.Text = "Set Active (F9)";
+            // 
             // frm_RSRList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -789,5 +807,6 @@
         private DevExpress.XtraEditors.TextEdit txtRSRno;
         private DevExpress.XtraLayout.LayoutControlItem labBSno;
         private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.SimpleButton btActive;
     }
 }
