@@ -186,10 +186,10 @@
             // 
             // barListItem2
             // 
-            this.barListItem2.Caption = "Smart Parts V.3.0.38";
+            this.barListItem2.Caption = "Smart Parts V.3.0.39";
             this.barListItem2.Id = 129;
             this.barListItem2.Name = "barListItem2";
-            toolTipItem1.Text = "20230606";
+            toolTipItem1.Text = "20230621";
             superToolTip1.Items.Add(toolTipItem1);
             this.barListItem2.SuperTip = superToolTip1;
             // 

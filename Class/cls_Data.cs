@@ -8001,7 +8001,7 @@ namespace SmartPart.Class
             if (cls_Global_DB.ConnectDatabase(ref conn))
             {
                 sb.AppendLine("Select *,case VAT_STATUS when 1 then 'Vat นอก' when 2 then 'Vat ใน' Else 'ไม่มี Vat' End as _VAT_STATUS,");
-                sb.AppendLine("case RO_STATUS when 1 then 'เปิด' when 2 then 'พิมพ์' when 3 then 'โอน' when 4 then 'ปิด' Else 'ยกเลิก' End as _RO_STATUS From ROHEADER Where DELETED = 0");
+                sb.AppendLine("case RO_STATUS when 1 then 'เปิด' when 2 then 'พิมพ์' when 3 then 'ปิด' Else 'ยกเลิก' End as _RO_STATUS From ROHEADER Where DELETED = 0");
                 if (RO.Customer > 0)
                 {
                 sb.AppendLine("And CUS_ID = @CUS_ID");
@@ -10217,6 +10217,142 @@ namespace SmartPart.Class
             return ret;
         }
 
+        public static bool UpdateCloseVoucher(cls_Struct.VoucherType type, int IdData)
+        {
+            SqlConnection conn = new SqlConnection();
+            SqlCommand cmd = conn.CreateCommand();
+            SqlTransaction tran = null;
+            SqlDataAdapter _dataAdapter = new SqlDataAdapter();
+            StringBuilder sb = new StringBuilder();
+            DataTable dt = new DataTable();
+            int[] RCD_ID = new int[0];
+            int i, rcdID;
+            int iCount = 0;
+            bool ret = false;
+            try
+            {
+                if (cls_Global_DB.ConnectDatabase(ref conn))
+                {
+                    tran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+
+                    sb.Clear();
+                    switch (type)
+                    {
+                        case cls_Struct.VoucherType.PO:
+                            sb.AppendLine("UPDATE POHEADER WITH (UPDLOCK) SET PO_STATUS = 3 WHERE POH_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.RC:
+                            sb.AppendLine("UPDATE RCHEADER WITH (UPDLOCK) SET RC_STATUS = 3 WHERE RCH_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.JOB:
+                            sb.AppendLine("UPDATE JOBHEAD WITH (UPDLOCK) SET JOB_STATUS = 3 WHERE JOB_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.RO:
+                            sb.AppendLine("UPDATE ROHEADER WITH (UPDLOCK) SET RO_STATUS = 3 WHERE ROH_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.SQ:
+                            sb.AppendLine("UPDATE SQHEADER WITH (UPDLOCK) SET SQ_STATUS = 3 WHERE SQH_ID = @IdData");
+                            break;
+                    }
+
+                    cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = sb.ToString();
+                    cmd.CommandTimeout = 30;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.Clear();
+                    cmd.Transaction = tran;
+
+                    cmd.Parameters.Add("@IdData", SqlDbType.Int).Value = IdData;
+                    cmd.ExecuteNonQuery();
+                    tran.Commit();
+
+                    iCount = 0;
+
+                    sb.Clear();
+                    switch (type)
+                    {
+                        case cls_Struct.VoucherType.PO:
+                            //sb.AppendLine("UPDATE POHEADER WITH (UPDLOCK) SET PO_STATUS = 3 WHERE POH_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.RC:
+                            //sb.AppendLine("UPDATE RCHEADER WITH (UPDLOCK) SET RC_STATUS = 3 WHERE RCH_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.JOB:
+                            sb.AppendLine("UPDATE JOBHEAD WITH (UPDLOCK) SET JOB_STATUS = 3 WHERE JOB_ID = @IdData");
+                            break;
+                        case cls_Struct.VoucherType.RO:
+                            sb.Clear();
+                            sb.AppendLine("Select RCD_ID From RODETAIL Where ROD_PID = @ROD_PID");
+
+                            _dataAdapter.SelectCommand = new SqlCommand(sb.ToString(), conn);
+                            _dataAdapter.SelectCommand.Parameters.Clear();
+
+                            _dataAdapter.SelectCommand.Parameters.Add("@ROD_PID", SqlDbType.Int).Value = IdData;
+                            dt = new DataTable();
+                            _dataAdapter.Fill(dt);
+                            if (dt.Rows.Count > 0)
+                            {
+                                for (i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    rcdID = cls_Library.DBInt(dt.Rows[i]["RCD_ID"]);
+                                    if (iCount == 0)
+                                    {
+                                        iCount++;
+                                        Array.Resize(ref RCD_ID, iCount);
+                                        RCD_ID[iCount - 1] = rcdID;
+                                    }
+                                    else
+                                    {
+                                        bool a = Array.Exists(RCD_ID, element => element == rcdID);
+                                        if (!a)
+                                        {
+                                            iCount++;
+                                            Array.Resize(ref RCD_ID, iCount);
+                                            RCD_ID[iCount - 1] = rcdID;
+                                        }
+                                    }
+                                }
+                            }
+                            _dataAdapter.Dispose();
+
+                            for (i = 0; i < iCount; i++)
+                            {
+                                sb.Clear();
+                                sb.AppendLine("UPDATE RCDETAIL WITH (UPDLOCK) SET QTY_MARK = 0 WHERE RCD_ID = @RCD_ID");
+
+                                cmd = new SqlCommand();
+                                cmd.Connection = conn;
+                                cmd.CommandText = sb.ToString();
+                                cmd.CommandTimeout = 30;
+                                cmd.CommandType = CommandType.Text;
+                                cmd.Parameters.Clear();
+                                cmd.Transaction = tran;
+
+                                cmd.Parameters.Add("@RCD_ID", SqlDbType.Int).Value = RCD_ID[i];
+                                cmd.ExecuteNonQuery();
+                            }
+                            break;
+                        case cls_Struct.VoucherType.SQ:
+                            //sb.AppendLine("UPDATE SQHEADER WITH (UPDLOCK) SET SQ_STATUS = 3 WHERE SQH_ID = @IdData");
+                            break;
+                    }
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ret = false;
+                tran.Rollback();
+                XtraMessageBox.Show("UpdateCloseVoucher :" + ex.Message);
+            }
+            finally
+            {
+                cls_Global_DB.CloseDB(ref conn); conn.Dispose();
+            }
+            return ret;
+        }
+
         public static bool UpdatePrintVoucher(cls_Struct.VoucherType type, int IdData)
         {
             SqlConnection conn = new SqlConnection();
@@ -10235,19 +10371,19 @@ namespace SmartPart.Class
                     switch (type)
                     {
                         case cls_Struct.VoucherType.PO:
-                            sb.AppendLine("UPDATE POHEADER WITH (UPDLOCK) SET RC_STATUS = 2 WHERE POH_ID = @IdData");
+                            sb.AppendLine("UPDATE POHEADER WITH (UPDLOCK) SET PO_STATUS = 2 WHERE POH_ID = @IdData");
                             break;
                         case cls_Struct.VoucherType.RC:
                             sb.AppendLine("UPDATE RCHEADER WITH (UPDLOCK) SET RC_STATUS = 2 WHERE RCH_ID = @IdData");
                             break;
                         case cls_Struct.VoucherType.JOB:
-                            sb.AppendLine("UPDATE JOBHEAD WITH (UPDLOCK) SET RC_STATUS = 2 WHERE JOB_ID = @IdData");
+                            sb.AppendLine("UPDATE JOBHEAD WITH (UPDLOCK) SET JOB_STATUS = 2 WHERE JOB_ID = @IdData");
                             break;
                         case cls_Struct.VoucherType.RO:
-                            sb.AppendLine("UPDATE ROHEADER WITH (UPDLOCK) SET RC_STATUS = 2 WHERE ROH_ID = @IdData");
+                            sb.AppendLine("UPDATE ROHEADER WITH (UPDLOCK) SET RO_STATUS = 2 WHERE ROH_ID = @IdData");
                             break;
                         case cls_Struct.VoucherType.SQ:
-                            sb.AppendLine("UPDATE SQHEADER WITH (UPDLOCK) SET RC_STATUS = 2 WHERE SQH_ID = @IdData");
+                            sb.AppendLine("UPDATE SQHEADER WITH (UPDLOCK) SET SQ_STATUS = 2 WHERE SQH_ID = @IdData");
                             break;
                     }
 
@@ -10269,7 +10405,7 @@ namespace SmartPart.Class
             {
                 ret = false;
                 tran.Rollback();
-                XtraMessageBox.Show("UpdateActiveVoucher :" + ex.Message);
+                XtraMessageBox.Show("UpdatePrintVoucher :" + ex.Message);
             }
             finally
             {
@@ -12506,7 +12642,7 @@ namespace SmartPart.Class
             return ret;
         }
 
-        public static bool CheckSaveSameRO(int cusId, byte VatStatus, out int Id)
+        public static bool CheckSaveSameRO(int cusId, byte VatStatus,int rcdID, out int Id)
         {
             bool ret = false;
 
@@ -12521,7 +12657,7 @@ namespace SmartPart.Class
                 if (cls_Global_DB.ConnectDatabase(ref conn))
                 {
 
-                    sb.AppendLine("Select ROH_ID AS _id From ROHEADER Where CUS_ID = @CUS_ID And RO_DATE = @_DATE And VAT_STATUS = @VAT_STATUS And DELETED = 0");
+                    sb.AppendLine("Select ROH_ID AS _id From ROHEADER Where CUS_ID = @CUS_ID And RO_DATE = @_DATE And VAT_STATUS = @VAT_STATUS And (RO_STATUS <> 3 And RO_STATUS <> 4) And DELETED = 0");
 
                     Adap.SelectCommand = new SqlCommand(sb.ToString(), conn);
                     Adap.SelectCommand.Parameters.Clear();
@@ -12531,7 +12667,30 @@ namespace SmartPart.Class
                     Adap.SelectCommand.Parameters.Add("@VAT_STATUS", SqlDbType.TinyInt).Value = VatStatus;
 
                     Adap.Fill(dt);
-                    if (dt.Rows.Count > 0) Id = cls_Library.DBInt(dt.Rows[0]["_id"]);
+                    if (dt.Rows.Count > 0)
+                    {
+                        Id = cls_Library.DBInt(dt.Rows[0]["_id"]);
+                    }
+                    Adap.Dispose();
+
+                    if (Id > 0)
+                    {
+                        sb.Clear();
+                        sb.AppendLine("Select ROD_ID AS _id From RODETAIL Where ROD_PID = @ROD_PID And RCD_ID = @RCD_ID And DELETED = 0");
+
+                        Adap.SelectCommand = new SqlCommand(sb.ToString(), conn);
+                        Adap.SelectCommand.Parameters.Clear();
+
+                        Adap.SelectCommand.Parameters.Add("@ROD_PID", SqlDbType.Int).Value = Id;
+                        Adap.SelectCommand.Parameters.Add("@RCD_ID", SqlDbType.Int).Value = rcdID;
+                        dt = new DataTable();
+                        Adap.Fill(dt);
+                        if (dt.Rows.Count <= 0)
+                        {
+                            Id = 0;
+                        }
+                    }
+
                     ret = true;
                 }
             }

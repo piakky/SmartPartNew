@@ -145,7 +145,7 @@ namespace SmartPart.Forms.General
             comboStatus.Properties.Items.Add("ทุกสถานะ");
             comboStatus.Properties.Items.Add("เปิด");
             comboStatus.Properties.Items.Add("พิมพ์");
-            comboStatus.Properties.Items.Add("โอน");
+            //comboStatus.Properties.Items.Add("โอน");
             comboStatus.Properties.Items.Add("ปิด");
             comboStatus.Properties.Items.Add("ยกเลิก");
 
@@ -173,9 +173,9 @@ namespace SmartPart.Forms.General
                 int pid = 0;
                 if (row == null) return;
                 pid = cls_Library.DBInt(row["ROH_ID"]);
-                if (cls_Library.DBInt(row["RC_STATUS"]) != 2)
+                if (cls_Library.DBInt(row["RO_STATUS"]) != 2)
                 {
-                    XtraMessageBox.Show("ใบส่งคืนสินค้าเลขที่ : " + row["RO_NO"].ToString() + "ยังไม่ได้พิมพ์", "พิมพ์", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    XtraMessageBox.Show("ใบส่งคืนสินค้าเลขที่ : " + row["RO_NO"].ToString() + " ยังไม่ได้พิมพ์", "พิมพ์", MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     return;
                 }
                 //if (cls_Data.CheckActiveVoucher(cls_Struct.VoucherType.RO) <= 0)
@@ -201,7 +201,7 @@ namespace SmartPart.Forms.General
                 if (Result == DialogResult.Yes)
                 {
                     //cls_Data.UpdateUnActiveVoucherByType(4);
-                    if (cls_Data.UpdatePrintVoucher(cls_Struct.VoucherType.RO, pid))
+                    if (cls_Data.UpdateCloseVoucher(cls_Struct.VoucherType.RO, pid))
                     {
                         XtraMessageBox.Show(string.Format("ปิดใบส่งคืนสินค้าเลขที่ {0}  เรียบร้อยแล้ว", row["RO_NO"].ToString()));
                         if (!bwList.IsBusy)
@@ -440,6 +440,18 @@ namespace SmartPart.Forms.General
                 {
                     e.Appearance.BackColor = Color.Green;
                 }
+
+                dr = dtRO.Select("ROH_ID = " + _id + "And RO_STATUS = 2");
+                if (dr.Length > 0)
+                {
+                    e.Appearance.BackColor = Color.Blue;
+                }
+
+                dr = dtRO.Select("ROH_ID = " + _id + "And RO_STATUS = 3");
+                if (dr.Length > 0)
+                {
+                    e.Appearance.BackColor = Color.Orange;
+                }
             }
         }
 
@@ -502,7 +514,7 @@ namespace SmartPart.Forms.General
 
         private void btClose_Click(object sender, EventArgs e)
         {
-
+            SetClose();
         }
     }
 }

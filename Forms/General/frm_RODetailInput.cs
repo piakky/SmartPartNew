@@ -637,7 +637,7 @@ namespace SmartPart.Forms.General
             int ROH_ID = 0;
             try
             {
-                if (cls_Data.CheckSaveSameRO(Cus_Id, cls_Library.CByte(VatStatus + 1), out ROH_ID))
+                if (cls_Data.CheckSaveSameRO(Cus_Id, cls_Library.CByte(VatStatus + 1), IdNo, out ROH_ID))
                 {                    
                     if (ROH_ID > 0) //เพิ่มรายการ
                     {
