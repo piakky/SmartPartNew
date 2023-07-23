@@ -49,11 +49,11 @@ namespace SmartPart.Forms.General
                 AssignDataFromComponent();
                 if (cls_Data.SaveProductEdit(cls_Struct.TypeEditItem.T8, ItemID, dtSave))
                 {
-                    XtraMessageBox.Show("แก้ไขข้อมูลรหัสสินค้าเรียบร้อยแล้ว", "บันทึกข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("แก้ไขจำนวนสินค้าในคลังเรียบร้อยแล้ว", "บันทึกข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    XtraMessageBox.Show("แก้ไขข้อมูลรหัสสินค้าไม่สำเร็จ กรุณาบันทึกใหม่", "บันทึกข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("แก้ไขจำนวนสินค้าในคลังไม่สำเร็จ กรุณาบันทึกใหม่", "บันทึกข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }

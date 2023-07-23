@@ -78,6 +78,8 @@
             this.btMark = new DevExpress.XtraEditors.SimpleButton();
             this.btView = new DevExpress.XtraEditors.SimpleButton();
             this.bwList = new System.ComponentModel.BackgroundWorker();
+            this.colInvNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colInvDate = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -418,6 +420,8 @@
             this.colID,
             this.colPid,
             this.colRCNo,
+            this.colInvNo,
+            this.colInvDate,
             this.colRCdate,
             this.colCus,
             this.colUnitD,
@@ -466,8 +470,6 @@
             this.colRCdate.Caption = "วันที่ RC";
             this.colRCdate.FieldName = "RC_DATE";
             this.colRCdate.Name = "colRCdate";
-            this.colRCdate.Visible = true;
-            this.colRCdate.VisibleIndex = 1;
             this.colRCdate.Width = 83;
             // 
             // colCus
@@ -479,7 +481,7 @@
             this.colCus.FieldName = "CUS_ID";
             this.colCus.Name = "colCus";
             this.colCus.Visible = true;
-            this.colCus.VisibleIndex = 2;
+            this.colCus.VisibleIndex = 3;
             this.colCus.Width = 83;
             // 
             // repoSearchCus
@@ -506,7 +508,7 @@
             this.colUnitD.FieldName = "unitfullname";
             this.colUnitD.Name = "colUnitD";
             this.colUnitD.Visible = true;
-            this.colUnitD.VisibleIndex = 3;
+            this.colUnitD.VisibleIndex = 4;
             this.colUnitD.Width = 83;
             // 
             // colQty
@@ -521,7 +523,7 @@
             this.colQty.Name = "colQty";
             this.colQty.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 4;
+            this.colQty.VisibleIndex = 5;
             this.colQty.Width = 83;
             // 
             // colUprice
@@ -536,7 +538,7 @@
             this.colUprice.FieldName = "PRICE_DOC";
             this.colUprice.Name = "colUprice";
             this.colUprice.Visible = true;
-            this.colUprice.VisibleIndex = 5;
+            this.colUprice.VisibleIndex = 6;
             this.colUprice.Width = 83;
             // 
             // colDisA
@@ -551,7 +553,7 @@
             this.colDisA.FieldName = "DISCOUNT";
             this.colDisA.Name = "colDisA";
             this.colDisA.Visible = true;
-            this.colDisA.VisibleIndex = 6;
+            this.colDisA.VisibleIndex = 7;
             this.colDisA.Width = 59;
             // 
             // colNetD
@@ -566,7 +568,7 @@
             this.colNetD.FieldName = "NET_DOC_AC";
             this.colNetD.Name = "colNetD";
             this.colNetD.Visible = true;
-            this.colNetD.VisibleIndex = 7;
+            this.colNetD.VisibleIndex = 8;
             this.colNetD.Width = 140;
             // 
             // colNetR
@@ -581,7 +583,7 @@
             this.colNetR.FieldName = "PRICE_REAL";
             this.colNetR.Name = "colNetR";
             this.colNetR.Visible = true;
-            this.colNetR.VisibleIndex = 8;
+            this.colNetR.VisibleIndex = 9;
             this.colNetR.Width = 76;
             // 
             // colQtyMark
@@ -591,7 +593,7 @@
             this.colQtyMark.Name = "colQtyMark";
             this.colQtyMark.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colQtyMark.Visible = true;
-            this.colQtyMark.VisibleIndex = 9;
+            this.colQtyMark.VisibleIndex = 10;
             this.colQtyMark.Width = 76;
             // 
             // colQtyReturn
@@ -601,7 +603,7 @@
             this.colQtyReturn.Name = "colQtyReturn";
             this.colQtyReturn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colQtyReturn.Visible = true;
-            this.colQtyReturn.VisibleIndex = 10;
+            this.colQtyReturn.VisibleIndex = 11;
             this.colQtyReturn.Width = 76;
             // 
             // colBrand
@@ -609,7 +611,7 @@
             this.colBrand.Caption = "ยี่ห้อรับเข้า";
             this.colBrand.Name = "colBrand";
             this.colBrand.Visible = true;
-            this.colBrand.VisibleIndex = 11;
+            this.colBrand.VisibleIndex = 12;
             this.colBrand.Width = 76;
             // 
             // colDateReturn
@@ -618,7 +620,7 @@
             this.colDateReturn.FieldName = "DATE_RETURN";
             this.colDateReturn.Name = "colDateReturn";
             this.colDateReturn.Visible = true;
-            this.colDateReturn.VisibleIndex = 12;
+            this.colDateReturn.VisibleIndex = 13;
             this.colDateReturn.Width = 76;
             // 
             // colVatStatus
@@ -629,7 +631,7 @@
             this.colVatStatus.FieldName = "_VAT_STATUS";
             this.colVatStatus.Name = "colVatStatus";
             this.colVatStatus.Visible = true;
-            this.colVatStatus.VisibleIndex = 13;
+            this.colVatStatus.VisibleIndex = 14;
             this.colVatStatus.Width = 86;
             // 
             // repoSearchUnit
@@ -719,6 +721,22 @@
             // 
             this.bwList.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwList_DoWork);
             this.bwList.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwList_RunWorkerCompleted);
+            // 
+            // colInvNo
+            // 
+            this.colInvNo.Caption = "เลขที่ Invoice";
+            this.colInvNo.FieldName = "INV_NO";
+            this.colInvNo.Name = "colInvNo";
+            this.colInvNo.Visible = true;
+            this.colInvNo.VisibleIndex = 1;
+            // 
+            // colInvDate
+            // 
+            this.colInvDate.Caption = "วันที่ Invoice";
+            this.colInvDate.FieldName = "INV_DATE";
+            this.colInvDate.Name = "colInvDate";
+            this.colInvDate.Visible = true;
+            this.colInvDate.VisibleIndex = 2;
             // 
             // frm_HistoryRC
             // 
@@ -823,5 +841,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colBrand;
         private DevExpress.XtraGrid.Columns.GridColumn colDateReturn;
         private DevExpress.XtraGrid.Columns.GridColumn colVatStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn colInvNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colInvDate;
     }
 }

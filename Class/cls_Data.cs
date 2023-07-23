@@ -10651,7 +10651,7 @@ namespace SmartPart.Class
             {
             if (cls_Global_DB.ConnectDatabase(ref conn))
             {
-                sb.AppendLine("Select A.*,C.unitfullname,CASE WHEN A.NET_DOC = 0 and A.DISCOUNT > 0 THEN (A.COG_DOC)/A.QTY ELSE A.NET_DOC END as NET_DOC_AC,B.RC_NO, B.RC_DATE, B.CUS_ID, case B.VAT_STATUS when 1 then 'Vat นอก' when 2 then 'Vat ใน' Else 'ไม่มี Vat' End as _VAT_STATUS From RCDETAIL A");
+                sb.AppendLine("Select A.*,C.unitfullname,CASE WHEN A.NET_DOC = 0 and A.DISCOUNT > 0 THEN (A.COG_DOC)/A.QTY ELSE A.NET_DOC END as NET_DOC_AC,B.RC_NO, B.RC_DATE,B.INV_NO,B.INV_DATE, B.CUS_ID, case B.VAT_STATUS when 1 then 'Vat นอก' when 2 then 'Vat ใน' Else 'ไม่มี Vat' End as _VAT_STATUS From RCDETAIL A");
                 sb.AppendLine("INNER JOIN RCHEADER B ON A.RCD_PID = B.RCH_ID");
                     sb.AppendLine("OUTER APPLY");
                     sb.AppendLine("(");
@@ -25393,6 +25393,43 @@ namespace SmartPart.Class
                 conn.Dispose();
             }
             return Xcap;
+        }
+
+        public static DateTime GetLastStockBalance(int id)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection();
+            SqlDataAdapter _dataAdapter = new SqlDataAdapter();
+            StringBuilder sb = new StringBuilder();
+            DateTime Xdate = DateTime.MinValue;
+            try
+            {
+                if (cls_Global_DB.ConnectDatabase(ref conn))
+                {
+                    sb.AppendLine("Select UPDATED_DATE");
+                    sb.AppendLine(" From STOCKBALANCE Where ITEM_ID = @ITEM_ID");
+
+                    _dataAdapter.SelectCommand = new SqlCommand(sb.ToString(), conn);
+                    _dataAdapter.SelectCommand.Parameters.Clear();
+                    _dataAdapter.SelectCommand.Parameters.Add("@ITEM_ID", SqlDbType.Int).Value = id;
+                    dt = new DataTable("STOCKBALANCE");
+                    _dataAdapter.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        Xdate = cls_Library.DBDateTime(dt.Rows[0]["UPDATED_DATE"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("GetLastStockBalance :" + ex.Message);
+            }
+            finally
+            {
+                cls_Global_DB.CloseDB(ref conn);
+                conn.Dispose();
+            }
+            return Xdate;
         }
 
         public static bool UpdateLastTransfer(cls_Struct.VoucherType type, DataTable dt)

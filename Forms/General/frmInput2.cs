@@ -3259,7 +3259,7 @@ namespace SmartPart.Forms.General
                             UpdateItemData();
                         }
                         break;
-                    case cls_Struct.TypeEditItem.T8:
+                    case cls_Struct.TypeEditItem.T8:    //Stock on hand
                         frm_ItemEdit8 frmItem8 = new frm_ItemEdit8(ID);
                         frmItem8.spinQtyNew.Focus();
                         if (frmItem8.ShowDialog() == DialogResult.OK)
@@ -3732,14 +3732,23 @@ namespace SmartPart.Forms.General
                 else
                     dateMoveStock.DateTime = cls_Library.DBDateTime(row["MINIMUM_DATE"]);
 
+                Sdate = cls_Data.GetLastStockBalance(cls_Library.DBInt(row["ITEM_ID"]));
+                if (cls_Library.IsDate(Sdate))
+                {
+                    if ((Sdate == DateTime.MaxValue) || (Sdate == DateTime.MinValue))
+                    {
+                    }
+                    else
+                    {
+                        if (Sdate > dateMoveStock.DateTime)  dateMoveStock.Text = Sdate.ToShortDateString();
+                    }
+                }
+
                 txtBrand.Text = row["BRAND_CODE"].ToString() + " " + row["BRAND_NAME"].ToString();   //Join
                 chkSearch.EditValue = cls_Library.DBbool(row["DISPLAY_HIDING_STATUS"]);
                 chkSet.EditValue = cls_Library.DBbool(row["SET_STATUS"]);
                 chkComponent.EditValue = cls_Library.DBbool(row["COMPONENT_STATUS"]);
                 chkBarcode.EditValue = cls_Library.DBbool(row["BARCODE_STATUS"]);       //XXX เพิ่มฟิลด์ BARCODE_STATUS
-
-                
-
 
                 ////Image
                 pictureDisplay.Image = null;
