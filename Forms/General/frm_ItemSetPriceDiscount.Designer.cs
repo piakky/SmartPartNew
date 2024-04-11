@@ -317,6 +317,7 @@
             this.btSaleDiscountEdit.Size = new System.Drawing.Size(83, 25);
             this.btSaleDiscountEdit.TabIndex = 2;
             this.btSaleDiscountEdit.Text = "แก้ไข";
+            this.btSaleDiscountEdit.Visible = false;
             this.btSaleDiscountEdit.Click += new System.EventHandler(this.btSaleDiscountEdit_Click);
             // 
             // panelControl3

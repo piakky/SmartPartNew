@@ -2700,6 +2700,48 @@ namespace SmartPart.Class
         #endregion
 
         #region ZONE
+        #region Brands
+        public static bool CheckUseBrandByItem(int BRAND_ID)
+        {
+            bool ret = false;
+
+            SqlConnection conn = new SqlConnection();
+            SqlDataAdapter Adap = new SqlDataAdapter();
+            StringBuilder sb = new StringBuilder();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                if (cls_Global_DB.ConnectDatabase(ref conn))
+                {
+
+                    sb.AppendLine("Select TOP 1 BRAND_ID From M_ITEMS Where 1=1 And BRAND_ID=@BRAND_ID And DELETED = 0");
+
+                    Adap.SelectCommand = new SqlCommand(sb.ToString(), conn);
+                    Adap.SelectCommand.Parameters.Clear();
+
+                    Adap.SelectCommand.Parameters.Add("@BRAND_ID", SqlDbType.Int).Value = BRAND_ID;
+                   
+                    Adap.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        ret = true;
+                    }
+                    Adap.Dispose();                   
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("CheckUseBrandByItem :" + ex.Message);
+                ret = false;
+            }
+            finally
+            {
+                cls_Global_DB.CloseDB(ref conn); conn.Dispose();
+            }
+            return ret;
+        }
+        #endregion
 
         #region Customer
         public static string CheckCodeUser(string Xpass)
@@ -12583,61 +12625,61 @@ namespace SmartPart.Class
             double qtyMark = 0;
             try
             {
-            if (cls_Global_DB.ConnectDatabase(ref conn))
-            {
-
-                LoadSpecifyData(string.Format("Select * From RCDETAIL Where RCD_ID = {0}", RCD_Id), out dt, "RCDETAIL");
-                if (dt.Rows.Count > 0)
+                if (cls_Global_DB.ConnectDatabase(ref conn))
                 {
-                    qtyMark = cls_Library.DBDouble(dt.Rows[0]["QTY_MARK"]);
-                    qtyReturn = cls_Library.DBDouble(dt.Rows[0]["QTY_RETURN"]);
 
-                    qtyReturn += Qty;
-                    //qtyMark -= Qty;
+                    LoadSpecifyData(string.Format("Select * From RCDETAIL Where RCD_ID = {0}", RCD_Id), out dt, "RCDETAIL");
+                    if (dt.Rows.Count > 0)
+                    {
+                        //qtyMark = cls_Library.DBDouble(dt.Rows[0]["QTY_MARK"]);
+                        qtyMark = 0;
+                        qtyReturn = cls_Library.DBDouble(dt.Rows[0]["QTY_RETURN"]);
 
-                    sb.Clear();
-                    sb.AppendLine("UPDATE RCDETAIL WITH (UPDLOCK) SET");
-                    sb.AppendLine("QTY_RETURN = @QTY_RETURN,");
-                    //sb.AppendLine("QTY_MARK = @QTY_MARK,");
-                    sb.AppendLine("UPDATE_BY =@UPDATE_BY,");
-                    sb.AppendLine("UPDATE_DATE =@UPDATE_DATE,");
-                    sb.AppendLine("DATE_RETURN =@DATE_RETURN");
-                    sb.AppendLine("Where RCD_ID = @RCD_ID");
+                        qtyReturn += Qty;
+                        //qtyMark -= Qty;
 
-                    tran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                        sb.Clear();
+                        sb.AppendLine("UPDATE RCDETAIL WITH (UPDLOCK) SET");
+                        sb.AppendLine("QTY_RETURN = @QTY_RETURN,");
+                        sb.AppendLine("QTY_MARK = @QTY_MARK,");
+                        sb.AppendLine("UPDATE_BY =@UPDATE_BY,");
+                        sb.AppendLine("UPDATE_DATE =@UPDATE_DATE,");
+                        sb.AppendLine("DATE_RETURN =@DATE_RETURN");
+                        sb.AppendLine("Where RCD_ID = @RCD_ID");
 
+                        tran = conn.BeginTransaction(IsolationLevel.ReadCommitted);
 
-                    cmd = new SqlCommand();
-                    cmd.Connection = conn;
-                    cmd.CommandText = sb.ToString();
-                    cmd.CommandTimeout = 30;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.Clear();
+                        cmd = new SqlCommand();
+                        cmd.Connection = conn;
+                        cmd.CommandText = sb.ToString();
+                        cmd.CommandTimeout = 30;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.Clear();
 
-                    cmd.Parameters.Add("@QTY_RETURN", SqlDbType.Float).Value = qtyReturn;
-                    //cmd.Parameters.Add("@QTY_MARK", SqlDbType.Float).Value = qtyMark;
-                    cmd.Parameters.Add("@UPDATE_BY", SqlDbType.Int).Value = cls_Global_class.GB_Userid;
-                    cmd.Parameters.Add("@UPDATE_DATE", SqlDbType.DateTime).Value = DateTime.Now;
-                    cmd.Parameters.Add("@DATE_RETURN", SqlDbType.DateTime).Value = DateTime.Now;
-                    cmd.Parameters.Add("@RCD_ID", SqlDbType.Int).Value = RCD_Id;
+                        cmd.Parameters.Add("@QTY_RETURN", SqlDbType.Float).Value = qtyReturn;
+                        cmd.Parameters.Add("@QTY_MARK", SqlDbType.Float).Value = qtyMark;
+                        cmd.Parameters.Add("@UPDATE_BY", SqlDbType.Int).Value = cls_Global_class.GB_Userid;
+                        cmd.Parameters.Add("@UPDATE_DATE", SqlDbType.DateTime).Value = DateTime.Now;
+                        cmd.Parameters.Add("@DATE_RETURN", SqlDbType.DateTime).Value = DateTime.Now;
+                        cmd.Parameters.Add("@RCD_ID", SqlDbType.Int).Value = RCD_Id;
 
-                    cmd.Transaction = tran;
-                    cmd.ExecuteNonQuery();
+                        cmd.Transaction = tran;
+                        cmd.ExecuteNonQuery();
 
-                    tran.Commit();
-                    ret = true;
+                        tran.Commit();
+                        ret = true;
+                    }
                 }
-            }
             }
             catch (Exception ex)
             {
-            MessageBox.Show("UpdateRCQtyMark: " + ex.Message);
-            tran.Rollback();
-            ret = false;
+                MessageBox.Show("UpdateRCQtyMark: " + ex.Message);
+                tran.Rollback();
+                ret = false;
             }
             finally
             {
-            cls_Global_DB.CloseDB(ref conn); conn.Dispose();
+                cls_Global_DB.CloseDB(ref conn); conn.Dispose();
             }
             return ret;
         }
@@ -12697,6 +12739,51 @@ namespace SmartPart.Class
             catch (Exception ex)
             {
                 XtraMessageBox.Show("CheckSaveSameRO :" + ex.Message);
+                ret = false;
+            }
+            finally
+            {
+                cls_Global_DB.CloseDB(ref conn); conn.Dispose();
+            }
+            return ret;
+        }
+
+        public static bool CheckSaveSameROByItem(int cusId,int ITEM_ID, byte VatStatus, int rcdID)
+        {
+            bool ret = false;
+
+            SqlConnection conn = new SqlConnection();
+            SqlDataAdapter Adap = new SqlDataAdapter();
+            StringBuilder sb = new StringBuilder();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                if (cls_Global_DB.ConnectDatabase(ref conn))
+                {
+
+                    sb.AppendLine("Select ROH_ID AS _id From ROHEADER A inner join RODETAIL B on A.ROH_ID = B.ROD_PID Where A.CUS_ID = @CUS_ID And A.VAT_STATUS = @VAT_STATUS And B.RCD_ID = @RCD_ID And B.ITEM_ID = @ITEM_ID AND (A.RO_STATUS <> 3 And A.RO_STATUS <> 4) And A.DELETED = 0 AND B.DELETED = 0");
+
+                    Adap.SelectCommand = new SqlCommand(sb.ToString(), conn);
+                    Adap.SelectCommand.Parameters.Clear();
+
+                    Adap.SelectCommand.Parameters.Add("@CUS_ID", SqlDbType.Int).Value = cusId;                    
+                    Adap.SelectCommand.Parameters.Add("@VAT_STATUS", SqlDbType.TinyInt).Value = VatStatus;
+                    Adap.SelectCommand.Parameters.Add("@ITEM_ID", SqlDbType.Int).Value = ITEM_ID;
+                    Adap.SelectCommand.Parameters.Add("@RCD_ID", SqlDbType.Int).Value = rcdID;
+                    Adap.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        ret = true;
+                    }
+                    Adap.Dispose();
+
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("CheckSaveSameROByItem :" + ex.Message);
                 ret = false;
             }
             finally

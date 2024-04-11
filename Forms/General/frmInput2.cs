@@ -2720,6 +2720,11 @@ namespace SmartPart.Forms.General
             gvVersatile.FocusedRowHandle = RowHandle;
         }
 
+        private void BTsub8_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void InitialDialog()
         {
             if (!bwData.IsBusy)

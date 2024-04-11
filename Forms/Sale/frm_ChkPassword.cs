@@ -32,5 +32,16 @@ namespace SmartPart.Forms.Sale
                 }
             }
         }
+
+        private void frm_ChkPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    this.Close();
+                    break;
+
+            }
+        }
     }
 }

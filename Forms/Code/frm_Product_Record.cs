@@ -2256,6 +2256,11 @@ namespace SmartPart.Forms.Code
             {
                 if (SaveData())
                 {
+                    if (cls_Global_DB.DataInitial.Tables.Contains("M_ITEMS"))
+                    {
+                        cls_Global_DB.DataInitial.Tables.Remove("M_ITEMS");
+                        cls_Global_DB.DataInitial.Tables.Add(cls_Data.GetDataTable("M_ITEMS"));
+                    }
                     XtraMessageBox.Show("บันทึกรหัสสินค้าเรียบร้อยแล้ว", "บันทึกข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     IsSaveOK = true;
                     if (((SimpleButton)sender).Tag.ToString() == "1")

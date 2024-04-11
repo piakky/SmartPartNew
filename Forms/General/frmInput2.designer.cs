@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions17 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
@@ -44,7 +45,6 @@
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions13 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions14 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions15 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions16 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtCategory = new DevExpress.XtraEditors.TextEdit();
@@ -665,7 +665,7 @@
             this.spinBuy.Location = new System.Drawing.Point(37, 108);
             this.spinBuy.Name = "spinBuy";
             this.spinBuy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions1)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions17)});
             this.spinBuy.Properties.ReadOnly = true;
             this.spinBuy.Size = new System.Drawing.Size(50, 20);
             this.spinBuy.StyleController = this.layoutControl8;
@@ -693,7 +693,7 @@
             this.spinSell.Location = new System.Drawing.Point(37, 84);
             this.spinSell.Name = "spinSell";
             this.spinSell.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions2)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions1)});
             this.spinSell.Properties.ReadOnly = true;
             this.spinSell.Size = new System.Drawing.Size(50, 20);
             this.spinSell.StyleController = this.layoutControl8;
@@ -710,7 +710,7 @@
             this.spinUse.Location = new System.Drawing.Point(37, 60);
             this.spinUse.Name = "spinUse";
             this.spinUse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions3)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions2)});
             this.spinUse.Properties.ReadOnly = true;
             this.spinUse.Size = new System.Drawing.Size(50, 20);
             this.spinUse.StyleController = this.layoutControl8;
@@ -738,7 +738,7 @@
             this.spinH.Location = new System.Drawing.Point(37, 12);
             this.spinH.Name = "spinH";
             this.spinH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions4)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions3)});
             this.spinH.Properties.ReadOnly = true;
             this.spinH.Size = new System.Drawing.Size(50, 20);
             this.spinH.StyleController = this.layoutControl8;
@@ -766,7 +766,7 @@
             this.spinL.Location = new System.Drawing.Point(37, 36);
             this.spinL.Name = "spinL";
             this.spinL.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions5)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions4)});
             this.spinL.Properties.ReadOnly = true;
             this.spinL.Size = new System.Drawing.Size(50, 20);
             this.spinL.StyleController = this.layoutControl8;
@@ -859,7 +859,7 @@
             this.spinNumStock.Location = new System.Drawing.Point(515, 12);
             this.spinNumStock.Name = "spinNumStock";
             this.spinNumStock.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions6)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions5)});
             this.spinNumStock.Properties.ReadOnly = true;
             this.spinNumStock.Size = new System.Drawing.Size(153, 20);
             this.spinNumStock.StyleController = this.layoutControl8;
@@ -876,7 +876,7 @@
             this.spinNumwait.Location = new System.Drawing.Point(515, 36);
             this.spinNumwait.Name = "spinNumwait";
             this.spinNumwait.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions7)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions6)});
             this.spinNumwait.Properties.ReadOnly = true;
             this.spinNumwait.Size = new System.Drawing.Size(153, 20);
             this.spinNumwait.StyleController = this.layoutControl8;
@@ -918,7 +918,7 @@
             this.spinNumStockVat.Location = new System.Drawing.Point(515, 132);
             this.spinNumStockVat.Name = "spinNumStockVat";
             this.spinNumStockVat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions8)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions7)});
             this.spinNumStockVat.Size = new System.Drawing.Size(153, 20);
             this.spinNumStockVat.StyleController = this.layoutControl8;
             this.spinNumStockVat.TabIndex = 13;
@@ -1304,7 +1304,7 @@
             this.spinPriceAfVat.Location = new System.Drawing.Point(133, 74);
             this.spinPriceAfVat.Name = "spinPriceAfVat";
             this.spinPriceAfVat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions9)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions8)});
             this.spinPriceAfVat.Properties.ReadOnly = true;
             this.spinPriceAfVat.Size = new System.Drawing.Size(100, 20);
             this.spinPriceAfVat.StyleController = this.layoutControl7;
@@ -1321,7 +1321,7 @@
             this.spinCostAfVat.Location = new System.Drawing.Point(133, 50);
             this.spinCostAfVat.Name = "spinCostAfVat";
             this.spinCostAfVat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions10)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions9)});
             this.spinCostAfVat.Properties.ReadOnly = true;
             this.spinCostAfVat.Size = new System.Drawing.Size(100, 20);
             this.spinCostAfVat.StyleController = this.layoutControl7;
@@ -1338,7 +1338,7 @@
             this.spinNewPrice.Location = new System.Drawing.Point(133, 2);
             this.spinNewPrice.Name = "spinNewPrice";
             this.spinNewPrice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions11)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions10)});
             this.spinNewPrice.Properties.ReadOnly = true;
             this.spinNewPrice.Size = new System.Drawing.Size(100, 20);
             this.spinNewPrice.StyleController = this.layoutControl7;
@@ -1457,7 +1457,7 @@
             this.spinCostLast.Location = new System.Drawing.Point(111, 74);
             this.spinCostLast.Name = "spinCostLast";
             this.spinCostLast.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions12)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions11)});
             this.spinCostLast.Properties.ReadOnly = true;
             this.spinCostLast.Size = new System.Drawing.Size(105, 20);
             this.spinCostLast.StyleController = this.layoutControl6;
@@ -1474,7 +1474,7 @@
             this.spinCostbfLast.Location = new System.Drawing.Point(111, 50);
             this.spinCostbfLast.Name = "spinCostbfLast";
             this.spinCostbfLast.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions13)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions12)});
             this.spinCostbfLast.Properties.ReadOnly = true;
             this.spinCostbfLast.Size = new System.Drawing.Size(105, 20);
             this.spinCostbfLast.StyleController = this.layoutControl6;
@@ -1491,7 +1491,7 @@
             this.spinCostAvg.Location = new System.Drawing.Point(111, 2);
             this.spinCostAvg.Name = "spinCostAvg";
             this.spinCostAvg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions14)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions13)});
             this.spinCostAvg.Properties.ReadOnly = true;
             this.spinCostAvg.Size = new System.Drawing.Size(105, 20);
             this.spinCostAvg.StyleController = this.layoutControl6;
@@ -1508,7 +1508,7 @@
             this.spinCostOneYear.Location = new System.Drawing.Point(111, 26);
             this.spinCostOneYear.Name = "spinCostOneYear";
             this.spinCostOneYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions15)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions14)});
             this.spinCostOneYear.Properties.ReadOnly = true;
             this.spinCostOneYear.Size = new System.Drawing.Size(105, 20);
             this.spinCostOneYear.StyleController = this.layoutControl6;
@@ -1625,7 +1625,7 @@
             this.spinListNo.Location = new System.Drawing.Point(84, 50);
             this.spinListNo.Name = "spinListNo";
             this.spinListNo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions16)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions15)});
             this.spinListNo.Properties.ReadOnly = true;
             this.spinListNo.Size = new System.Drawing.Size(98, 20);
             this.spinListNo.StyleController = this.layoutControl5;
@@ -2007,6 +2007,7 @@
             this.BTsub8.StyleController = this.layoutControl4;
             this.BTsub8.TabIndex = 7;
             this.BTsub8.Text = "กลุ่มสินค้าเอนกประสงค์";
+            this.BTsub8.Click += new System.EventHandler(this.BTsub8_Click);
             // 
             // BTsub7
             // 
@@ -2515,7 +2516,7 @@
             this.vGridItem.Appearance.Category.Options.UseFont = true;
             this.vGridItem.Appearance.RecordValue.Font = new System.Drawing.Font("Tahoma", 10F);
             this.vGridItem.Appearance.RecordValue.Options.UseFont = true;
-            this.vGridItem.Cursor = System.Windows.Forms.Cursors.Default;
+            this.vGridItem.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.vGridItem.Dock = System.Windows.Forms.DockStyle.Top;
             this.vGridItem.Location = new System.Drawing.Point(0, 0);
             this.vGridItem.Name = "vGridItem";
@@ -2670,8 +2671,8 @@
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl4);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.dockPanel2);
+            this.Controls.Add(this.dockPanel1);
             this.KeyPreview = true;
             this.Name = "frmInput2";
             this.Text = "frmInput2";

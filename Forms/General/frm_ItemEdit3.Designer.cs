@@ -98,14 +98,14 @@
             0,
             0});
             this.spinQtyMax.EnterMoveNextControl = true;
-            this.spinQtyMax.Location = new System.Drawing.Point(94, 100);
+            this.spinQtyMax.Location = new System.Drawing.Point(94, 75);
             this.spinQtyMax.Name = "spinQtyMax";
             this.spinQtyMax.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.spinQtyMax.Properties.Appearance.Options.UseFont = true;
             this.spinQtyMax.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinQtyMax.Size = new System.Drawing.Size(100, 22);
-            this.spinQtyMax.TabIndex = 15;
+            this.spinQtyMax.TabIndex = 1;
             // 
             // spinQtymin
             // 
@@ -115,33 +115,33 @@
             0,
             0});
             this.spinQtymin.EnterMoveNextControl = true;
-            this.spinQtymin.Location = new System.Drawing.Point(94, 75);
+            this.spinQtymin.Location = new System.Drawing.Point(94, 99);
             this.spinQtymin.Name = "spinQtymin";
             this.spinQtymin.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.spinQtymin.Properties.Appearance.Options.UseFont = true;
             this.spinQtymin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinQtymin.Size = new System.Drawing.Size(100, 22);
-            this.spinQtymin.TabIndex = 13;
+            this.spinQtymin.TabIndex = 3;
             // 
             // labelControl19
             // 
             this.labelControl19.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl19.Appearance.Options.UseFont = true;
-            this.labelControl19.Location = new System.Drawing.Point(12, 103);
+            this.labelControl19.Location = new System.Drawing.Point(12, 78);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(76, 17);
-            this.labelControl19.TabIndex = 14;
+            this.labelControl19.TabIndex = 0;
             this.labelControl19.Text = "ปริมาณสูงสุด";
             // 
             // labelControl18
             // 
             this.labelControl18.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl18.Appearance.Options.UseFont = true;
-            this.labelControl18.Location = new System.Drawing.Point(12, 78);
+            this.labelControl18.Location = new System.Drawing.Point(12, 101);
             this.labelControl18.Name = "labelControl18";
             this.labelControl18.Size = new System.Drawing.Size(76, 17);
-            this.labelControl18.TabIndex = 12;
+            this.labelControl18.TabIndex = 2;
             this.labelControl18.Text = "ปริมาณต่ำสุด";
             // 
             // spinQtyMinSale
@@ -152,14 +152,14 @@
             0,
             0});
             this.spinQtyMinSale.EnterMoveNextControl = true;
-            this.spinQtyMinSale.Location = new System.Drawing.Point(352, 100);
+            this.spinQtyMinSale.Location = new System.Drawing.Point(352, 99);
             this.spinQtyMinSale.Name = "spinQtyMinSale";
             this.spinQtyMinSale.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.spinQtyMinSale.Properties.Appearance.Options.UseFont = true;
             this.spinQtyMinSale.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinQtyMinSale.Size = new System.Drawing.Size(100, 22);
-            this.spinQtyMinSale.TabIndex = 19;
+            this.spinQtyMinSale.TabIndex = 7;
             // 
             // spinQtyMinOrder
             // 
@@ -176,16 +176,16 @@
             this.spinQtyMinOrder.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinQtyMinOrder.Size = new System.Drawing.Size(100, 22);
-            this.spinQtyMinOrder.TabIndex = 17;
+            this.spinQtyMinOrder.TabIndex = 5;
             // 
             // labelControl22
             // 
             this.labelControl22.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl22.Appearance.Options.UseFont = true;
-            this.labelControl22.Location = new System.Drawing.Point(210, 104);
+            this.labelControl22.Location = new System.Drawing.Point(210, 101);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(136, 17);
-            this.labelControl22.TabIndex = 18;
+            this.labelControl22.TabIndex = 6;
             this.labelControl22.Text = "ปริมาณขั้นต่ำในการขาย";
             // 
             // labelControl20
@@ -195,7 +195,7 @@
             this.labelControl20.Location = new System.Drawing.Point(200, 78);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(146, 17);
-            this.labelControl20.TabIndex = 16;
+            this.labelControl20.TabIndex = 4;
             this.labelControl20.Text = "ปริมาณขั้นต่ำในการสั่งซื้อ";
             // 
             // spCountCar
@@ -206,24 +206,24 @@
             0,
             0});
             this.spCountCar.EnterMoveNextControl = true;
-            this.spCountCar.Location = new System.Drawing.Point(352, 125);
+            this.spCountCar.Location = new System.Drawing.Point(352, 124);
             this.spCountCar.Name = "spCountCar";
             this.spCountCar.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.spCountCar.Properties.Appearance.Options.UseFont = true;
             this.spCountCar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spCountCar.Size = new System.Drawing.Size(100, 22);
-            this.spCountCar.TabIndex = 21;
+            this.spCountCar.TabIndex = 9;
             // 
             // labelControl8
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(216, 128);
+            this.labelControl8.Location = new System.Drawing.Point(216, 127);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(130, 17);
-            this.labelControl8.TabIndex = 20;
+            this.labelControl8.TabIndex = 8;
             this.labelControl8.Text = "จำนวนที่ใช้ต่อรถ 1 คัน";
             // 
             // bwItem

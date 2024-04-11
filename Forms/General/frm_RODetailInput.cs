@@ -637,6 +637,13 @@ namespace SmartPart.Forms.General
             int ROH_ID = 0;
             try
             {
+                //2023-07-25
+                if(cls_Data.CheckSaveSameROByItem(Cus_Id, cls_Library.CInt(sluItem.EditValue), cls_Library.CByte(VatStatus + 1), IdNo))
+                {
+                    MessageBox.Show("ไม่สามารถเพิ่มรหัสสินค้าเดียวกันจาก RC เดียวกัน เข้า RO เดียวกันได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (cls_Data.CheckSaveSameRO(Cus_Id, cls_Library.CByte(VatStatus + 1), IdNo, out ROH_ID))
                 {                    
                     if (ROH_ID > 0) //เพิ่มรายการ

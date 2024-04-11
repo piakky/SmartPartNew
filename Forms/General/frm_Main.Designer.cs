@@ -186,10 +186,10 @@
             // 
             // barListItem2
             // 
-            this.barListItem2.Caption = "Smart Parts V.3.0.39";
+            this.barListItem2.Caption = "Smart Parts V.3.0.40";
             this.barListItem2.Id = 129;
             this.barListItem2.Name = "barListItem2";
-            toolTipItem1.Text = "20230621";
+            toolTipItem1.Text = "20230725";
             superToolTip1.Items.Add(toolTipItem1);
             this.barListItem2.SuperTip = superToolTip1;
             // 
@@ -505,7 +505,7 @@
             this.dockPanel.Controls.Add(this.dockPanel1_Container);
             this.dockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPanel.ID = new System.Guid("b1b02013-abd0-4d08-9607-a62748bf1fc6");
-            this.dockPanel.Location = new System.Drawing.Point(-232, 0);
+            this.dockPanel.Location = new System.Drawing.Point(0, 0);
             this.dockPanel.Name = "dockPanel";
             this.dockPanel.Options.ShowCloseButton = false;
             this.dockPanel.Options.ShowMaximizeButton = false;

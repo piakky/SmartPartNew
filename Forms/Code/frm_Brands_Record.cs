@@ -423,41 +423,49 @@ namespace SmartPart.Forms.Code
             DataRow row = null;
             try
             {
-            dsEdit = dsMainData.Copy();
+                dsEdit = dsMainData.Copy();
 
-            switch (DataMode)
-            {
-                case cls_Struct.ActionMode.Add:
-                TxtBrandCode.Text = cls_Data.GetLastCodeMaster("BRANDS", 4);
-                break;
-                case cls_Struct.ActionMode.Edit:
-                case cls_Struct.ActionMode.Copy:
-                if (dsEdit.Tables["M_BRANDS"].Rows.Count <= 0) return;
-                row = dsEdit.Tables["M_BRANDS"].Rows[0];
-                TxtBrandCode.Text = cls_Library.DBString(row["BRAND_CODE"]);
-                TxtBrandName.Text = cls_Library.DBString(row["BRAND_NAME"]);
-                TxtBrandDesc.Text = cls_Library.DBString(row["DESCRIPTION"]);
-                TxtBrandAddDesc.Text = cls_Library.DBString(row["ADDITION_DESCRIPTION"]);
-                if ((cls_Library.DBDateTime(row["SETUP_PRICE_DATE"]) == DateTime.MinValue) || (cls_Library.DBDateTime(row["SETUP_PRICE_DATE"]) == DateTime.MaxValue))
+                switch (DataMode)
                 {
-                    datePriceDate.Text = "";
+                    case cls_Struct.ActionMode.Add:
+                    TxtBrandCode.Text = cls_Data.GetLastCodeMaster("BRANDS", 4);
+                    break;
+                    case cls_Struct.ActionMode.Edit:
+                    case cls_Struct.ActionMode.Copy:
+                    if (dsEdit.Tables["M_BRANDS"].Rows.Count <= 0) return;
+                    row = dsEdit.Tables["M_BRANDS"].Rows[0];
+                    TxtBrandCode.Text = cls_Library.DBString(row["BRAND_CODE"]);
+                    TxtBrandName.Text = cls_Library.DBString(row["BRAND_NAME"]);
+                    TxtBrandDesc.Text = cls_Library.DBString(row["DESCRIPTION"]);
+                    TxtBrandAddDesc.Text = cls_Library.DBString(row["ADDITION_DESCRIPTION"]);
+                    if ((cls_Library.DBDateTime(row["SETUP_PRICE_DATE"]) == DateTime.MinValue) || (cls_Library.DBDateTime(row["SETUP_PRICE_DATE"]) == DateTime.MaxValue))
+                    {
+                        datePriceDate.Text = "";
+                    }
+                    else
+                    {
+                        datePriceDate.DateTime = cls_Library.DBDateTime(row["SETUP_PRICE_DATE"]);
+                    }
+
+                    radioReceiveVAT.SelectedIndex = cls_Library.DBInt(row["TAX_INVOICE_VAT_STATUS"]) - 1;
+                    radioVatStatus.SelectedIndex = cls_Library.DBInt(row["CURRENT_VAT_STATUS"]) - 1;
+                    radioSetPrice.SelectedIndex = cls_Library.DBInt(row["SALE_CODE"]) - 1;
+                    radioPrintType.SelectedIndex = cls_Library.DBInt(row["PRINT_TYPE"]) - 1;
+                    break;
+                }
+                AddDataSourceToGrid();
+                if (cls_Data.CheckUseBrandByItem(ItemID))
+                {
+                    radioSetPrice.Enabled = false;
                 }
                 else
                 {
-                    datePriceDate.DateTime = cls_Library.DBDateTime(row["SETUP_PRICE_DATE"]);
+                    radioSetPrice.Enabled = true;
                 }
-
-                radioReceiveVAT.SelectedIndex = cls_Library.DBInt(row["TAX_INVOICE_VAT_STATUS"]) - 1;
-                radioVatStatus.SelectedIndex = cls_Library.DBInt(row["CURRENT_VAT_STATUS"]) - 1;
-                radioSetPrice.SelectedIndex = cls_Library.DBInt(row["SALE_CODE"]) - 1;
-                radioPrintType.SelectedIndex = cls_Library.DBInt(row["PRINT_TYPE"]) - 1;
-                break;
-            }
-            AddDataSourceToGrid();
             }
             catch (Exception ex)
             {
-            MessageBox.Show("SetDataToControl :" + ex.Message);
+                MessageBox.Show("SetDataToControl :" + ex.Message);
             }
         }
 
@@ -554,6 +562,11 @@ namespace SmartPart.Forms.Code
             {
                 if (SaveData())
                 {
+                    if (cls_Global_DB.DataInitial.Tables.Contains("M_BRANDS"))
+                    {
+                        cls_Global_DB.DataInitial.Tables.Remove("M_BRANDS");
+                        cls_Global_DB.DataInitial.Tables.Add(cls_Data.GetDataTable("M_BRANDS"));
+                    }
                     XtraMessageBox.Show("บันทึกรหัสยี่ห้อสินค้าเรียบร้อยแล้ว", "บันทึกข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     IsSaveOK = true;
                     if (((SimpleButton)sender).Tag.ToString() == "1")

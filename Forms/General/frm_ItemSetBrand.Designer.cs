@@ -74,7 +74,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(817, 59);
+            this.panelControl1.Size = new System.Drawing.Size(690, 59);
             this.panelControl1.TabIndex = 12;
             // 
             // btClose
@@ -159,7 +159,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl2.Location = new System.Drawing.Point(0, 59);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(817, 51);
+            this.panelControl2.Size = new System.Drawing.Size(690, 51);
             this.panelControl2.TabIndex = 13;
             // 
             // panelControl3
@@ -169,8 +169,9 @@
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(0, 110);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(817, 276);
+            this.panelControl3.Size = new System.Drawing.Size(690, 35);
             this.panelControl3.TabIndex = 14;
+            this.panelControl3.Visible = false;
             // 
             // gridSaleDis
             // 
@@ -178,7 +179,7 @@
             this.gridSaleDis.Location = new System.Drawing.Point(2, 2);
             this.gridSaleDis.MainView = this.gvSaleDis;
             this.gridSaleDis.Name = "gridSaleDis";
-            this.gridSaleDis.Size = new System.Drawing.Size(813, 238);
+            this.gridSaleDis.Size = new System.Drawing.Size(686, 0);
             this.gridSaleDis.TabIndex = 22;
             this.gridSaleDis.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSaleDis});
@@ -265,9 +266,9 @@
             this.panelControl6.Controls.Add(this.btSaleDiscountEdit);
             this.panelControl6.Controls.Add(this.btSaleDiscountAdd);
             this.panelControl6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl6.Location = new System.Drawing.Point(2, 240);
+            this.panelControl6.Location = new System.Drawing.Point(2, -1);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(813, 34);
+            this.panelControl6.Size = new System.Drawing.Size(686, 34);
             this.panelControl6.TabIndex = 21;
             this.panelControl6.Visible = false;
             // 
@@ -317,7 +318,7 @@
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(817, 386);
+            this.ClientSize = new System.Drawing.Size(690, 145);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
